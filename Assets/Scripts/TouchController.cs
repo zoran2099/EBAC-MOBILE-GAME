@@ -9,7 +9,7 @@ public class TouchController : MonoBehaviour
 
     [SerializeField]
     private Vector2 pastPosition;    
-    public float Acceleration;
+    public float acceleration;
 
     
     // Update is called once per frame
@@ -18,7 +18,7 @@ public class TouchController : MonoBehaviour
     
         if (Input.GetMouseButton(0))
         {
-            Move(Speed(pastPosition.x, Input.mousePosition.x, Acceleration));
+            Move( Input.mousePosition.x - pastPosition.x);
         }
         pastPosition = Input.mousePosition;
 
@@ -26,11 +26,8 @@ public class TouchController : MonoBehaviour
 
     private void Move(float speed)
     {
-        transform.position += new Vector3(1f, 0f, 0f) * Time.deltaTime * speed;
+        transform.position += Vector3.right * Time.deltaTime * speed * acceleration;
     }
 
-    private float Speed(float currentPosition, float targetPosition, float acceleration)
-    {
-        return (targetPosition - currentPosition) * acceleration;
-    }
+   
 }
