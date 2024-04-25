@@ -26,7 +26,7 @@ public class TouchController : MonoBehaviour
 
     private void Move(float speed)
     {
-        transform.position += Vector3.right * Time.deltaTime * speed;
+        transform.position += new Vector3(1f, 0f, 0f) * Time.deltaTime * speed;
     }
 
     private float Speed(float currentPosition, float targetPosition, float acceleration)
