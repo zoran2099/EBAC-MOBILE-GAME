@@ -20,7 +20,9 @@ public class TouchController : MonoBehaviour
         {
             Move( Input.mousePosition.x - pastPosition.x);
         }
+
         pastPosition = Input.mousePosition;
+
 
     }
 
