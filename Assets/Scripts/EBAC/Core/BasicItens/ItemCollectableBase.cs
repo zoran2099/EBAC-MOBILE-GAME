@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace Ebac.Core.Singleton { 
 public class ItemCollectableBase : MonoBehaviour
 {
     public string tagPlayer = "Player";
@@ -42,4 +43,5 @@ public class ItemCollectableBase : MonoBehaviour
     }
     
     
+}
 }
