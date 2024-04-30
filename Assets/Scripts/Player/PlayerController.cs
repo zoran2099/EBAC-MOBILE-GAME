@@ -1,10 +1,11 @@
+using Ebac.Core.Singleton;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     [Header("Lerp")]
     public float lerpSpeed = 0.5f;
@@ -15,10 +16,23 @@ public class PlayerController : MonoBehaviour
     [Header("Player Settings")]
     public float speed = 1f;
     private bool _isLive = false;
+    private Vector3 _startPosition;
     public string enemyTag = "Enemy";
 
     [Header("UI")]
     public LoadSceneHelper LoadSceneHelper;
+
+
+    private float _currentSpeed;
+
+    private void Start()
+    {
+        _startPosition = new Vector3(0f, -0.27f, 0f);//transform.position;
+        
+        ResetSpeed();
+    }
+
+    
 
     // Update is called once per frame
     void Update()
@@ -31,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
         transform.position = Vector3.Lerp(transform.position, _position, lerpSpeed * Time.deltaTime);
 
-        transform.Translate(transform.forward * speed * Time.deltaTime);
+        transform.Translate(transform.forward * _currentSpeed * Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -56,5 +70,22 @@ public class PlayerController : MonoBehaviour
     public void StartGame()
     {
         _isLive = true;
+        transform.position = _startPosition;
+
+    }
+
+    public void ResetSpeed()
+    {
+        _currentSpeed = speed;
+    }
+
+    public void PowerUPSpeed(float amountToSpeed)
+    {
+        _currentSpeed = amountToSpeed;
+    }
+
+    internal void PowerUPSpeed(object amountToSpeed)
+    {
+        throw new NotImplementedException();
     }
 }
