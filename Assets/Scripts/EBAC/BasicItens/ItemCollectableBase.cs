@@ -12,20 +12,17 @@ public class ItemCollectableBase : MonoBehaviour
 
     public GameObject graphicItem;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _isCollectable = true;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Collect(collision.transform.tag);
-    }
+    
     private void OnTriggerEnter(Collider collision)
     {
         Collect(collision.transform.tag);
     }
 
-    private void Collect(String tagCollided)
+    protected virtual void Collect(String tagCollided)
     {
         if (tagCollided.Equals(tagPlayer) && _isCollectable) {
             
@@ -37,7 +34,7 @@ public class ItemCollectableBase : MonoBehaviour
         
     }
 
-    private void OnCollect()
+    protected virtual void OnCollect()
     {
         gameObject.SetActive(false);
         
