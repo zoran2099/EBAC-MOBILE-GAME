@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8288226822051117285}
   - component: {fileID: 2899564029593303717}
-  - component: {fileID: 981956326099841746}
+  - component: {fileID: 8506451693485735561}
   m_Layer: 0
   m_Name: PFB_Colletable
   m_TagString: Untagged
@@ -55,7 +55,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.81
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &981956326099841746
+--- !u!114 &8506451693485735561
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2018125932433585022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9bb7ab357bafc04791b9c058002512e, type: 3}
+  m_Script: {fileID: 11500000, guid: a165b30906438f240b1caef47d9d0383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tagPlayer: Player
