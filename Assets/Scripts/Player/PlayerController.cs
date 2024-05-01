@@ -18,21 +18,22 @@ public class PlayerController : Singleton<PlayerController>
     private bool _isLive = false;
     private Vector3 _startPosition;
     public string enemyTag = "Enemy";
+    public string endTag = "End";
 
     [Header("UI")]
     public LoadSceneHelper LoadSceneHelper;
 
-
+    [Header("Power Ups")]
     private float _currentSpeed;
 
     private void Start()
     {
         _startPosition = new Vector3(0f, -0.27f, 0f);//transform.position;
-        
+
         ResetSpeed();
     }
 
-    
+
 
     // Update is called once per frame
     void Update()
@@ -52,14 +53,18 @@ public class PlayerController : Singleton<PlayerController>
     {
         if (collision.transform.CompareTag(enemyTag)) EndGame();
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag(endTag)) EndGame();
+    }
 
     private void EndGame()
     {
         _isLive = false;
 
-        if (LoadSceneHelper != null) Invoke(nameof(LoadScene),1.5f) ;
+        if (LoadSceneHelper != null) Invoke(nameof(LoadScene), 1.5f);
 
-        
+
     }
 
     private void LoadScene()
@@ -84,8 +89,7 @@ public class PlayerController : Singleton<PlayerController>
         _currentSpeed = amountToSpeed;
     }
 
-    internal void PowerUPSpeed(object amountToSpeed)
-    {
-        throw new NotImplementedException();
-    }
+    
+
+
 }
