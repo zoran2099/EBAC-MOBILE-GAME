@@ -25,6 +25,7 @@ public class PlayerController : Singleton<PlayerController>
 
     [Header("Power Ups")]
     private float _currentSpeed;
+    private bool _isInvencible;
 
     private void Start()
     {
@@ -51,8 +52,9 @@ public class PlayerController : Singleton<PlayerController>
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.CompareTag(enemyTag)) EndGame();
+        if (collision.transform.CompareTag(enemyTag) && !_isInvencible) EndGame();
     }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag(endTag)) EndGame();
@@ -89,7 +91,9 @@ public class PlayerController : Singleton<PlayerController>
         _currentSpeed = amountToSpeed;
     }
 
-    
+    public void SetInvencible(bool value) { 
+        _isInvencible = value; 
+    }
 
 
 }
