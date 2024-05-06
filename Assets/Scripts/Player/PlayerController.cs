@@ -24,8 +24,10 @@ public class PlayerController : Singleton<PlayerController>
     public LoadSceneHelper LoadSceneHelper;
 
     [Header("Power Ups")]
+    public TextMeshPro textPowerUp;
     private float _currentSpeed;
     private bool _isInvencible;
+
 
     private void Start()
     {
@@ -93,6 +95,11 @@ public class PlayerController : Singleton<PlayerController>
 
     public void SetInvencible(bool value) { 
         _isInvencible = value; 
+    }
+
+    public void SetTextPowerUP(String text)
+    {
+        textPowerUp.text = text;
     }
 
 
