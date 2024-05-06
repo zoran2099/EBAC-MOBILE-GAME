@@ -92,7 +92,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5993300849324834659}
-  - component: {fileID: 1157583366719325765}
   - component: {fileID: 7742445283681107036}
   - component: {fileID: 5642596872493557399}
   m_Layer: 0
@@ -118,23 +117,6 @@ Transform:
   - {fileID: 168777412577775914}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1157583366719325765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6413876252080061587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a67d4b2b3600da443a583360a98823cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tagPlayer: Player
-  timeDestroy: 2.6
-  graphicItem: {fileID: 5566032526396151792}
-  effectDuration: 2
-  amountToSpeed: 25
 --- !u!65 &7742445283681107036
 BoxCollider:
   m_ObjectHideFlags: 0
