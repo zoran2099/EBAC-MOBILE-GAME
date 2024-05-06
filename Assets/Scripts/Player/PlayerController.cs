@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Ebac.Core.Singleton;
 using System;
 using System.Collections;
@@ -28,7 +29,9 @@ public class PlayerController : Singleton<PlayerController>
     private float _currentSpeed;
     private bool _isInvencible;
 
-
+    #region Unity
+    
+    
     private void Start()
     {
         _startPosition = new Vector3(0f, -0.27f, 0f);//transform.position;
@@ -62,6 +65,10 @@ public class PlayerController : Singleton<PlayerController>
         if (other.transform.CompareTag(endTag)) EndGame();
     }
 
+    #endregion
+
+    #region Scene Logic
+    
     private void EndGame()
     {
         _isLive = false;
@@ -82,6 +89,9 @@ public class PlayerController : Singleton<PlayerController>
         transform.position = _startPosition;
 
     }
+    #endregion
+
+    #region Power UPs
 
     public void ResetSpeed()
     {
@@ -102,5 +112,16 @@ public class PlayerController : Singleton<PlayerController>
         textPowerUp.text = text;
     }
 
+    public void ChangeHeight(float amount, float duration, float animationDuration, Ease ease)
+    {
+        transform.DOMoveY(_startPosition.y + amount,animationDuration).SetEase(ease);//.OnComplete(ResetHeight);        
+        Invoke(nameof(ResetHeight), duration);
+    }
 
+    public void ResetHeight(float animationDuration)
+    {
+        transform.DOMoveY(_startPosition.y, animationDuration);
+    }
+
+    #endregion
 }
