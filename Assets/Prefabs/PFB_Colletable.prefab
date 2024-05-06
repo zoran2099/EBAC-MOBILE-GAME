@@ -70,6 +70,10 @@ MonoBehaviour:
   tagPlayer: CoinCollector
   timeDestroy: 1
   graphicItem: {fileID: 3481277167523119645}
+  collider: {fileID: 2899564029593303717}
+  collect: 0
+  lerp: 5
+  minDistance: 1
 --- !u!1 &3481277167523119645
 GameObject:
   m_ObjectHideFlags: 0
