@@ -2756,7 +2756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lerpSpeed: 2.44
   target: {fileID: 378760105}
-  speed: 5
+  speed: 7
   enemyTag: Enemy
   endTag: End
   LoadSceneHelper: {fileID: 296553780}
