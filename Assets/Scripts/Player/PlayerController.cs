@@ -29,9 +29,13 @@ public class PlayerController : Singleton<PlayerController>
     private float _currentSpeed;
     private bool _isInvencible;
 
+    [Header("Coin Setup")]
+    public GameObject coinCollector;
+
+
     #region Unity
-    
-    
+
+
     private void Start()
     {
         _startPosition = new Vector3(0f, -0.27f, 0f);//transform.position;
@@ -122,6 +126,14 @@ public class PlayerController : Singleton<PlayerController>
     {
         transform.DOMoveY(_startPosition.y, animationDuration);
     }
+
+    public void ChangeCoinCollectorSize(float amount)
+    {
+        coinCollector.transform.localScale = Vector3.one * amount;
+    }
+
+    
+    
 
     #endregion
 }

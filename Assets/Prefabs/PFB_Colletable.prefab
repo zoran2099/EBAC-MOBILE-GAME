@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a165b30906438f240b1caef47d9d0383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagPlayer: Player
+  tagPlayer: CoinCollector
   timeDestroy: 1
   graphicItem: {fileID: 3481277167523119645}
 --- !u!1 &3481277167523119645
