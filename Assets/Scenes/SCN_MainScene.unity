@@ -2847,8 +2847,12 @@ MonoBehaviour:
   enemyTag: Enemy
   endTag: End
   LoadSceneHelper: {fileID: 296553780}
+  TimeToLoadScene: 2
   textPowerUp: {fileID: 1854383382}
   coinCollector: {fileID: 240914924}
+  animatorManager: {fileID: 1079534591}
+  EndValueImpactCollision: 1
+  Duration: 0.3
 --- !u!1 &860930743
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,7 +32,7 @@ public class AnimatorManager : MonoBehaviour
         }
     }
 
-    private void PlayAnimation(AnimationType type)
+    public void PlayAnimation(AnimationType type)
     {
         animatorSetup.ForEach(setup => { if (setup.type == type) animator.SetTrigger(setup.trigger); });
     }
