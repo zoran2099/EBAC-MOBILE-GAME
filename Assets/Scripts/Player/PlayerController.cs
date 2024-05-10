@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class PlayerController : Singleton<PlayerController>
 {
+    
     [Header("Lerp")]
     public float lerpSpeed = 0.5f;
     public Transform target;
@@ -23,6 +24,7 @@ public class PlayerController : Singleton<PlayerController>
 
     [Header("UI")]
     public LoadSceneHelper LoadSceneHelper;
+    public float TimeToLoadScene = 1.5f;
 
     [Header("Power Ups")]
     public TextMeshPro textPowerUp;
@@ -33,6 +35,11 @@ public class PlayerController : Singleton<PlayerController>
     public GameObject coinCollector;
 
 
+    [Header("Animation")]
+    public AnimatorManager animatorManager;
+    public float EndValueImpactCollision = 1f;
+    public float Duration = .3f;
+
     #region Unity
 
 
@@ -41,6 +48,8 @@ public class PlayerController : Singleton<PlayerController>
         _startPosition = new Vector3(0f, -0.27f, 0f);//transform.position;
 
         ResetSpeed();
+
+        animatorManager.PlayAnimation(AnimatorManager.AnimationType.IDLE);
     }
 
 
@@ -61,12 +70,20 @@ public class PlayerController : Singleton<PlayerController>
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.CompareTag(enemyTag) && !_isInvencible) EndGame();
+        if (collision.transform.CompareTag(enemyTag) && !_isInvencible) {
+            ImpactMove(collision.transform); 
+            EndGame(); 
+        }
     }
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.CompareTag(endTag)) EndGame();
+        if (other.transform.CompareTag(endTag)) EndGame(); 
+    }
+
+    private void ImpactMove(Transform transform)
+    {
+        transform.DOMoveZ(EndValueImpactCollision, Duration).SetRelative();
     }
 
     #endregion
@@ -77,7 +94,11 @@ public class PlayerController : Singleton<PlayerController>
     {
         _isLive = false;
 
-        if (LoadSceneHelper != null) Invoke(nameof(LoadScene), 1.5f);
+        animatorManager.PlayAnimation(AnimatorManager.AnimationType.DEAD);
+        
+        
+
+        if (LoadSceneHelper != null) Invoke(nameof(LoadScene), TimeToLoadScene);
 
 
     }
@@ -91,6 +112,8 @@ public class PlayerController : Singleton<PlayerController>
     {
         _isLive = true;
         transform.position = _startPosition;
+
+        animatorManager.PlayAnimation(AnimatorManager.AnimationType.RUN);
 
     }
     #endregion
