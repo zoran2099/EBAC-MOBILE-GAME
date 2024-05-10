@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class PlayerController : Singleton<PlayerController>
 {
+    
     [Header("Lerp")]
     public float lerpSpeed = 0.5f;
     public Transform target;
@@ -23,6 +24,7 @@ public class PlayerController : Singleton<PlayerController>
 
     [Header("UI")]
     public LoadSceneHelper LoadSceneHelper;
+    public float TimeToLoadScene = 1.5f;
 
     [Header("Power Ups")]
     public TextMeshPro textPowerUp;
@@ -33,18 +35,25 @@ public class PlayerController : Singleton<PlayerController>
     public GameObject coinCollector;
 
 
+    [Header("Animation")]
+    public AnimatorManager animatorManager;
+    public float EndValueImpactCollision = 1f;
+    public float Duration = .3f;
+    private float _baseSpeedAnniation = 7f;
+    
+    
+    
     #region Unity
-
 
     private void Start()
     {
-        _startPosition = new Vector3(0f, -0.27f, 0f);//transform.position;
+        ResetGame();
 
-        ResetSpeed();
+
     }
 
-
-
+    
+        
     // Update is called once per frame
     void Update()
     {
@@ -61,26 +70,47 @@ public class PlayerController : Singleton<PlayerController>
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.CompareTag(enemyTag) && !_isInvencible) EndGame();
+        if (collision.transform.CompareTag(enemyTag) && !_isInvencible) {
+            ImpactMove(collision.transform); 
+            EndGame(); 
+        }
     }
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.CompareTag(endTag)) EndGame();
+        if (other.transform.CompareTag(endTag)) EndGame(); 
     }
-
     #endregion
 
+
     #region Scene Logic
+
+    private void ImpactMove(Transform transform)
+    {
+        transform.DOMoveZ(EndValueImpactCollision, Duration).SetRelative();
+    }
+
     
+    private void ResetGame()
+    {
+        _startPosition = new Vector3(0f, -0.27f, 0f);//transform.position;
+
+        _currentSpeed = speed;
+        PlayIdleAnimation();
+
+    }
+
     private void EndGame()
     {
         _isLive = false;
+        PlayDeathAnimation();
 
-        if (LoadSceneHelper != null) Invoke(nameof(LoadScene), 1.5f);
+        if (LoadSceneHelper != null) Invoke(nameof(LoadScene), TimeToLoadScene);
 
 
     }
+   
+
 
     private void LoadScene()
     {
@@ -91,6 +121,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         _isLive = true;
         transform.position = _startPosition;
+        PlayRunAnimation();
 
     }
     #endregion
@@ -100,11 +131,15 @@ public class PlayerController : Singleton<PlayerController>
     public void ResetSpeed()
     {
         _currentSpeed = speed;
+        PlayRunAnimation();
     }
 
+    
     public void PowerUPSpeed(float amountToSpeed)
     {
         _currentSpeed = amountToSpeed;
+
+        PlayRunAnimation();
     }
 
     public void SetInvencible(bool value) { 
@@ -132,8 +167,27 @@ public class PlayerController : Singleton<PlayerController>
         coinCollector.transform.localScale = Vector3.one * amount;
     }
 
-    
-    
 
+
+
+    #endregion
+
+
+    #region Animattion
+
+    private void PlayIdleAnimation()
+    {
+        animatorManager.PlayAnimation(AnimatorManager.AnimationType.IDLE);
+    }
+
+    private void PlayRunAnimation()
+    {
+        animatorManager.PlayAnimation(AnimatorManager.AnimationType.RUN, _currentSpeed / _baseSpeedAnniation);
+    }
+
+    private void PlayDeathAnimation()
+    {
+        animatorManager.PlayAnimation(AnimatorManager.AnimationType.DEAD);
+    }
     #endregion
 }
