@@ -32,9 +32,15 @@ public class AnimatorManager : MonoBehaviour
         }
     }
 
-    public void PlayAnimation(AnimationType type)
+    public void PlayAnimation(AnimationType type, float currentSpeedFactor = 1f)
     {
-        animatorSetup.ForEach(setup => { if (setup.type == type) animator.SetTrigger(setup.trigger); });
+        Debug.Log("_current speed Factor " + currentSpeedFactor);
+
+        animatorSetup.ForEach(setup => { if (setup.type == type) 
+            { 
+                animator.SetTrigger(setup.trigger); 
+                animator.speed = setup.speedAnimation * currentSpeedFactor;
+            } });
     }
 }
 [System.Serializable]
@@ -42,5 +48,6 @@ public class AnimatorSetup
 {
     public AnimatorManager.AnimationType type;
     public string trigger;
+    public float speedAnimation = 1f;
 
 }

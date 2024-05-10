@@ -39,21 +39,21 @@ public class PlayerController : Singleton<PlayerController>
     public AnimatorManager animatorManager;
     public float EndValueImpactCollision = 1f;
     public float Duration = .3f;
-
+    private float _baseSpeedAnniation = 7f;
+    
+    
+    
     #region Unity
-
 
     private void Start()
     {
-        _startPosition = new Vector3(0f, -0.27f, 0f);//transform.position;
+        ResetGame();
 
-        ResetSpeed();
 
-        animatorManager.PlayAnimation(AnimatorManager.AnimationType.IDLE);
     }
 
-
-
+    
+        
     // Update is called once per frame
     void Update()
     {
@@ -80,28 +80,37 @@ public class PlayerController : Singleton<PlayerController>
     {
         if (other.transform.CompareTag(endTag)) EndGame(); 
     }
+    #endregion
+
+
+    #region Scene Logic
 
     private void ImpactMove(Transform transform)
     {
         transform.DOMoveZ(EndValueImpactCollision, Duration).SetRelative();
     }
 
-    #endregion
-
-    #region Scene Logic
     
+    private void ResetGame()
+    {
+        _startPosition = new Vector3(0f, -0.27f, 0f);//transform.position;
+
+        _currentSpeed = speed;
+        PlayIdleAnimation();
+
+    }
+
     private void EndGame()
     {
         _isLive = false;
-
-        animatorManager.PlayAnimation(AnimatorManager.AnimationType.DEAD);
-        
-        
+        PlayDeathAnimation();
 
         if (LoadSceneHelper != null) Invoke(nameof(LoadScene), TimeToLoadScene);
 
 
     }
+   
+
 
     private void LoadScene()
     {
@@ -112,8 +121,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         _isLive = true;
         transform.position = _startPosition;
-
-        animatorManager.PlayAnimation(AnimatorManager.AnimationType.RUN);
+        PlayRunAnimation();
 
     }
     #endregion
@@ -123,11 +131,15 @@ public class PlayerController : Singleton<PlayerController>
     public void ResetSpeed()
     {
         _currentSpeed = speed;
+        PlayRunAnimation();
     }
 
+    
     public void PowerUPSpeed(float amountToSpeed)
     {
         _currentSpeed = amountToSpeed;
+
+        PlayRunAnimation();
     }
 
     public void SetInvencible(bool value) { 
@@ -155,8 +167,27 @@ public class PlayerController : Singleton<PlayerController>
         coinCollector.transform.localScale = Vector3.one * amount;
     }
 
-    
-    
 
+
+
+    #endregion
+
+
+    #region Animattion
+
+    private void PlayIdleAnimation()
+    {
+        animatorManager.PlayAnimation(AnimatorManager.AnimationType.IDLE);
+    }
+
+    private void PlayRunAnimation()
+    {
+        animatorManager.PlayAnimation(AnimatorManager.AnimationType.RUN, _currentSpeed / _baseSpeedAnniation);
+    }
+
+    private void PlayDeathAnimation()
+    {
+        animatorManager.PlayAnimation(AnimatorManager.AnimationType.DEAD);
+    }
     #endregion
 }
