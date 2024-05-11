@@ -30,7 +30,7 @@ namespace Ebac.Core.Singleton
             if (instance == null)
             {
                 instance = this as T;
-                //DontDestroyOnLoad(gameObject);
+                DontDestroyOnLoad(gameObject);
             }
             else if (instance != this)
             {
