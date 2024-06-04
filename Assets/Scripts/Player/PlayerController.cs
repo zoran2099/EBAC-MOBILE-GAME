@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class PlayerController : Singleton<PlayerController>
 {
-    
     [Header("Lerp")]
     public float lerpSpeed = 0.5f;
     public Transform target;
@@ -21,6 +20,8 @@ public class PlayerController : Singleton<PlayerController>
     public Vector3 _startPosition = new Vector3(0f, -0.27f, 0f);
     public string enemyTag = "Enemy";
     public string endTag = "End";
+    public string deathZoneTag = "DeathZone";
+    public string trackTag = "Track";
 
     [Header("UI")]
     //public LoadSceneHelper LoadSceneHelper;
@@ -70,15 +71,37 @@ public class PlayerController : Singleton<PlayerController>
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.CompareTag(enemyTag) && !_isInvencible) {
+        if (!_isInvencible && collision.transform.CompareTag(enemyTag)) {
             ImpactMove(collision.transform); 
             EndGame(); 
         }
+        
+        /*if (collision.transform.CompareTag(deathZoneTag)) {
+            EndGame(); 
+        }*/
     }
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.CompareTag(endTag)) EndGame(); 
+        if (other.transform.CompareTag(endTag)) {
+            EndGame(); 
+        }
+
+        if (other.transform.CompareTag(deathZoneTag)){
+            EndGame(); 
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.transform.CompareTag(trackTag))
+        {
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            //rb.useGravity = true;
+            Debug.Log("Vai cair");
+            
+        }
     }
     #endregion
 
@@ -96,6 +119,7 @@ public class PlayerController : Singleton<PlayerController>
         transform.position = _startPosition ;
         target.position = _startPosition;
         _currentSpeed = speed;
+
         PlayIdleAnimation();
 
     }

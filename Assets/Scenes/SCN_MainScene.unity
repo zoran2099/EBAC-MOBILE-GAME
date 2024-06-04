@@ -5259,6 +5259,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 476447804}
     m_Modifications:
+    - target: {fileID: 8838058782326594, guid: 319115407ef371c4a967db6ae59c3a4f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 2252820610960446864, guid: 319115407ef371c4a967db6ae59c3a4f, type: 3}
+      propertyPath: m_TagString
+      value: Track
+      objectReference: {fileID: 0}
     - target: {fileID: 7988347041304484524, guid: 319115407ef371c4a967db6ae59c3a4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.4865036
@@ -5302,6 +5310,10 @@ PrefabInstance:
     - target: {fileID: 9094836800442739121, guid: 319115407ef371c4a967db6ae59c3a4f, type: 3}
       propertyPath: m_Name
       value: PFB_Track
+      objectReference: {fileID: 0}
+    - target: {fileID: 9094836800442739121, guid: 319115407ef371c4a967db6ae59c3a4f, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5827,13 +5839,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: PFB_Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 111711635446675868, guid: f94cfb68b139cd74981488c4560ead3a, type: 3}
+      propertyPath: m_TagString
+      value: DeathZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 6428348903330810822, guid: f94cfb68b139cd74981488c4560ead3a, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7148858015235450715, guid: f94cfb68b139cd74981488c4560ead3a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7148858015235450715, guid: f94cfb68b139cd74981488c4560ead3a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.45
+      value: -14.1
       objectReference: {fileID: 0}
     - target: {fileID: 7148858015235450715, guid: f94cfb68b139cd74981488c4560ead3a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6291,7 +6311,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!4 &3466194529744959229
 Transform:
@@ -6339,9 +6359,11 @@ MonoBehaviour:
   lerpSpeed: 1
   target: {fileID: 5311167087202802410}
   speed: 10
-  _startPosition: {x: 0, y: 0, z: 0}
+  _startPosition: {x: 0, y: -0.3, z: 0}
   enemyTag: Enemy
   endTag: End
+  deathZoneTag: DeathZone
+  trackTag: Track
   TimeToLoadScene: 2
   textPowerUp: {fileID: 7081542104939350964}
   coinCollector: {fileID: 7889664114139320264}
@@ -6662,7 +6684,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5993300849324834659, guid: 532c0575a39dd264487eaa20abbf814a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 230.78
+      value: 228.44
       objectReference: {fileID: 0}
     - target: {fileID: 5993300849324834659, guid: 532c0575a39dd264487eaa20abbf814a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6955,7 +6977,7 @@ GameObject:
   - component: {fileID: 3385981838680964314}
   - component: {fileID: 3977636560748128783}
   m_Layer: 0
-  m_Name: PFB_PlayerContainer
+  m_Name: PlayerContainer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7351,7 +7373,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5255821317044328233, guid: 563e89cdc17599845b727e9d1ea75d3b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5255821317044328233, guid: 563e89cdc17599845b727e9d1ea75d3b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7359,7 +7381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5255821317044328233, guid: 563e89cdc17599845b727e9d1ea75d3b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -75.71
+      value: -80.53
       objectReference: {fileID: 0}
     - target: {fileID: 5255821317044328233, guid: 563e89cdc17599845b727e9d1ea75d3b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7947,7 +7969,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705675573572758511}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

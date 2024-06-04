@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - End
   - CoinCollector
+  - Track
+  - DeathZone
   layers:
   - Default
   - TransparentFX
