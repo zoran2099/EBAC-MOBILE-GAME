@@ -18,12 +18,12 @@ public class PlayerController : Singleton<PlayerController>
     [Header("Player Settings")]
     public float speed = 1f;
     private bool _isLive = false;
-    private Vector3 _startPosition;
+    public Vector3 _startPosition = new Vector3(0f, -0.27f, 0f);
     public string enemyTag = "Enemy";
     public string endTag = "End";
 
     [Header("UI")]
-    public LoadSceneHelper LoadSceneHelper;
+    //public LoadSceneHelper LoadSceneHelper;
     public float TimeToLoadScene = 1.5f;
 
     [Header("Power Ups")]
@@ -93,8 +93,8 @@ public class PlayerController : Singleton<PlayerController>
     
     private void ResetGame()
     {
-        _startPosition = new Vector3(0f, -0.27f, 0f);//transform.position;
-
+        transform.position = _startPosition ;
+        target.position = _startPosition;
         _currentSpeed = speed;
         PlayIdleAnimation();
 
@@ -105,7 +105,8 @@ public class PlayerController : Singleton<PlayerController>
         _isLive = false;
         PlayDeathAnimation();
 
-        if (LoadSceneHelper != null) Invoke(nameof(LoadScene), TimeToLoadScene);
+        Invoke(nameof(ResetGame), TimeToLoadScene);
+        Invoke(nameof(LoadScene), TimeToLoadScene);
 
 
     }
@@ -114,7 +115,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private void LoadScene()
     {
-        LoadSceneHelper.Load(0);
+        LoadSceneHelper.Instance.Load(0);
     }
 
     public void StartGame()
