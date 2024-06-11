@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class LevelManager : MonoBehaviour
 {
@@ -11,27 +12,47 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField]
     private int _indexLevel;
+
+    private GameObject _currentLevel;
     
+
     // Start is called before the first frame update
     void Start()
     {
-        SpawnLevel(level[_indexLevel], container);
+
+
+        _currentLevel = SpawnLevel(level[_indexLevel], container);
     }
 
-    private void SpawnLevel(GameObject level, Transform container)
+    
+    private void SpawnNextLevel()
+    {
+        if (_currentLevel != null)
+        {
+            Destroy(_currentLevel);
+            _indexLevel++;
+        }
+        
+        if(_indexLevel >= level.Count) _indexLevel = 0;
+
+
+         _currentLevel = SpawnLevel(level[_indexLevel], container);
+
+    }
+
+    private GameObject SpawnLevel(GameObject level, Transform container)
     {
         var currentLevel =  Instantiate(level, container);
 
-        //if (currentLevel != null)
-        //{
-        //    currentLevel.transform.localPosition = Vector3.zero;
-
-        //}
+        return currentLevel;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            SpawnNextLevel();
+        }
     }
 }
