@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,7 +33,8 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         //SpawnNextLevel();
-        CreateLevelFromPieces();
+        //CreateLevelFromPieces();
+        StartCoroutine(CreateLevelFromPiecesCoroutine());
     }
 
     private void SpawnNextLevel()
@@ -76,6 +78,18 @@ public class LevelManager : MonoBehaviour
             CreateLevelPiece();
         }
     }
+
+    private IEnumerator CreateLevelFromPiecesCoroutine()
+    {
+        _spawnedLevelPieces = new List<LevelPieceBase>();
+
+        for (int i = 0; i < piecesNumber; i++)
+        {
+            CreateLevelPiece();
+            yield return new WaitForSeconds(.3f);
+        }
+    }
+
 
     private void CreateLevelPiece()
     {
