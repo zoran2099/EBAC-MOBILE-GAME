@@ -364,14 +364,10 @@ MonoBehaviour:
   level:
   - {fileID: 2392149086378672658, guid: 444cae00f814cae44b7fc9f4125fb191, type: 3}
   - {fileID: 2392149086378672658, guid: efcbea353120ebb4ea5bc40b0029ffc7, type: 3}
-  levelPieces:
-  - {fileID: 6165901336726258946, guid: 08e96f5a9d8fb8849974553b21a17ec4, type: 3}
-  - {fileID: 8248976267495361345, guid: 10b17afbccd4fed4cba204e306b8cff7, type: 3}
-  - {fileID: 7617623072705839974, guid: dbff7b683aed5f748b115f463f4f36aa, type: 3}
-  initPiece: {fileID: 6165901336726258946, guid: 08e96f5a9d8fb8849974553b21a17ec4, type: 3}
-  finalPiece: {fileID: 7617623072705839974, guid: 97b887803817a1e419cfd34787933370, type: 3}
-  piecesNumber: 5
-  _indexLevel: 0
+  levelPieceBaseSetup:
+  - {fileID: 11400000, guid: 8356cfff26a765c419717c2903644dd6, type: 2}
+  - {fileID: 11400000, guid: 3d1f160c8ba7e3144b0c2c8d2fd884d3, type: 2}
+  _indexLevel: 1
 --- !u!4 &264604576
 Transform:
   m_ObjectHideFlags: 0
