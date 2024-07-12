@@ -142,7 +142,7 @@ public class LevelManager : MonoBehaviour
 
     private void CreateFinalPiece()
     {
-        var spawnedPiece = Instantiate(_currentLevelPieceBaseSetup.finalPiece, container);
+        var spawnedPiece = GetSpawnedPiece(_currentLevelPieceBaseSetup.finalPiece);
 
         var lastPiece = _spawnedLevelPieces[_spawnedLevelPieces.Count - 1];
         spawnedPiece.transform.position = lastPiece.endPiece.position;
@@ -153,14 +153,26 @@ public class LevelManager : MonoBehaviour
 
     private void CreateInitPiece()
     {
-        var spawnedPiece = Instantiate(_currentLevelPieceBaseSetup.initPiece, container);
+        var spawnedPiece = GetSpawnedPiece(_currentLevelPieceBaseSetup.initPiece);
+
         _spawnedLevelPieces.Add(spawnedPiece);
+    }
+
+    private LevelPieceBase GetSpawnedPiece(LevelPieceBase piece)
+    {
+        var spawnedPiece = Instantiate(piece, container);
+
+        foreach (var itemArtPiece in spawnedPiece.GetComponentsInChildren<ArtPiece>())
+        {
+            itemArtPiece.ChangePiece(ArtManager.Instance.GetSetupByType(_currentLevelPieceBaseSetup.artType).gameObject);
+        }
+        return spawnedPiece;
     }
 
     private void CreateNexLevelPiece()
     {
         var piece = _currentLevelPieceBaseSetup.levelPieces[Random.Range(0, _currentLevelPieceBaseSetup.levelPieces.Count)];
-        var spawnedPiece = Instantiate(piece, container);
+        var spawnedPiece = GetSpawnedPiece(piece);
 
         if (_spawnedLevelPieces.Count > 0)
         {
