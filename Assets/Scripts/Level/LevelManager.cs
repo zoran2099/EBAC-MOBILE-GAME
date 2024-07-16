@@ -37,8 +37,8 @@ public class LevelManager : MonoBehaviour
     {
         NextLevelPieceSetup();
         //SpawnNextLevel();
-        //CreateLevelFromPieces();
-        StartCoroutine(CreateLevelFromPiecesCoroutine());
+        CreateLevelFromPieces();
+        //StartCoroutine(CreateLevelFromPiecesCoroutine());
     }
 
 
@@ -51,8 +51,8 @@ public class LevelManager : MonoBehaviour
         {
             //SpawnNextLevel();
             NextLevelPieceSetup();
-            //CreateLevelFromPieces();
-            StartCoroutine(CreateLevelFromPiecesCoroutine());
+            CreateLevelFromPieces();
+            //StartCoroutine(CreateLevelFromPiecesCoroutine());
 
         }
     }
@@ -110,6 +110,8 @@ public class LevelManager : MonoBehaviour
         }
 
         CreateFinalPiece();
+
+        ColorManager.Instance.ChangeColorByType(_currentLevelPieceBaseSetup.artType);
     }
 
     private void ClearSpawnedPieces()

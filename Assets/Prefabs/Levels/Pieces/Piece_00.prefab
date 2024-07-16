@@ -188,6 +188,10 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 0.85
       objectReference: {fileID: 0}
+    - target: {fileID: 1658256589413246739, guid: 319115407ef371c4a967db6ae59c3a4f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: afed5f8bf1496c747a748bd8a82dd7b2, type: 2}
     - target: {fileID: 2252820610960446864, guid: 319115407ef371c4a967db6ae59c3a4f, type: 3}
       propertyPath: m_TagString
       value: Track
