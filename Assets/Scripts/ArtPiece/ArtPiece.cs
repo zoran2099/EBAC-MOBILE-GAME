@@ -12,5 +12,6 @@ public class ArtPiece : MonoBehaviour
         if (currentArt != null) { Destroy(currentArt); }
         currentArt = Instantiate(newPiece, transform);
         currentArt.transform.localPosition = Vector3.zero;
+        currentArt.GetComponent<Renderer>().material = ColorManager.Instance.materials[1];
     }
 }
