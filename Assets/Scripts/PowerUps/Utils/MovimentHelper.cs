@@ -40,7 +40,12 @@ public class MovimentHelper : MonoBehaviour
     private void Init()
     {
         transform.position = positions[0].transform.position;
-        NextIndex();
+        StartIndex();
+    }
+
+    private void StartIndex()
+    {
+        _index = Random.Range( 0, positions.Count );
     }
 
 
