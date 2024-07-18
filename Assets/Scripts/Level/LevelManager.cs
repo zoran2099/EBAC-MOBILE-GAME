@@ -106,7 +106,6 @@ public class LevelManager : MonoBehaviour
         return currentLevel;
     }
 
-
     private void CreateLevelFromPieces()
     {
         ClearSpawnedPieces();
@@ -121,8 +120,24 @@ public class LevelManager : MonoBehaviour
         CreateFinalPiece();
 
         ColorManager.Instance.ChangeColorByType(_currentLevelPieceBaseSetup.artType);
-
         StartCoroutine(ScalePiecesByTime());
+    }
+
+    private void CreateLevelFromPiecesOld()
+    {
+        ClearSpawnedPieces();
+
+        CreateInitPiece();
+
+        for (int i = 0; i < _currentLevelPieceBaseSetup.piecesNumber; i++)
+        {
+            CreateNexLevelPiece();
+        }
+
+        CreateFinalPiece();
+
+        ColorManager.Instance.ChangeColorByType(_currentLevelPieceBaseSetup.artType);
+                
     }
 
     private void ClearSpawnedPieces()
@@ -209,8 +224,8 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < _spawnedLevelPieces.Count; i++)
         {
             _spawnedLevelPieces[i].transform.DOScale(1, scaleDuration);
+            yield return new WaitForSeconds(scaleTimeBetweenPieces);
         }
-        yield return new WaitForSeconds(scaleTimeBetweenPieces);
     }
 
 

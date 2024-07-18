@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.07006837, g: 0.37353566, b: 0.8637701, a: 1}
+  m_IndirectSpecularColor: {r: 0.5043949, g: 0.65283334, b: 0.8940435, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -365,10 +365,9 @@ MonoBehaviour:
   - {fileID: 2392149086378672658, guid: 444cae00f814cae44b7fc9f4125fb191, type: 3}
   - {fileID: 2392149086378672658, guid: efcbea353120ebb4ea5bc40b0029ffc7, type: 3}
   levelPieceBaseSetup:
-  - {fileID: 11400000, guid: 8356cfff26a765c419717c2903644dd6, type: 2}
-  - {fileID: 11400000, guid: 3d1f160c8ba7e3144b0c2c8d2fd884d3, type: 2}
+  - {fileID: 11400000, guid: 1ec3c6b050df0834595e7f16b438c032, type: 2}
   _indexLevel: 1
-  scaleDuration: 0.1
+  scaleDuration: 0.5
   scaleTimeBetweenPieces: 0.1
   ease: 30
 --- !u!4 &264604576
@@ -1673,6 +1672,8 @@ MonoBehaviour:
     gameObject: {fileID: 3563603812620955102, guid: 79bb9fab543670648b56b2f2041627d0, type: 3}
   - artType: 2
     gameObject: {fileID: 3215034532081790301, guid: e89e23d76d49cd54c8ffa60bb6133388, type: 3}
+  - artType: 3
+    gameObject: {fileID: 5428113417290123269, guid: 4302ba9637bc97f4aaa1793e56513a8d, type: 3}
 --- !u!4 &1881635528
 Transform:
   m_ObjectHideFlags: 0
