@@ -1798,8 +1798,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9a794a5dc64454eb6f8748ab3bbecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleDuration: 1
-  scaleTimeBetweenPieces: 1
+  scaleDuration: 0.1
+  scaleTimeBetweenPieces: 0.1
   ease: 30
   coins: []
 --- !u!4 &2146747889
