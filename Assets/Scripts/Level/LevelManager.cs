@@ -121,6 +121,7 @@ public class LevelManager : MonoBehaviour
 
         ColorManager.Instance.ChangeColorByType(_currentLevelPieceBaseSetup.artType);
         StartCoroutine(ScalePiecesByTime());
+        
     }
 
     private void CreateLevelFromPiecesOld()
@@ -149,6 +150,8 @@ public class LevelManager : MonoBehaviour
         }
 
         _spawnedLevelPieces.Clear();
+
+        CoinsAnimationManager.Instance.ClearCoinsCollection();
     }
 
     private IEnumerator CreateLevelFromPiecesCoroutine()
@@ -225,7 +228,10 @@ public class LevelManager : MonoBehaviour
         {
             _spawnedLevelPieces[i].transform.DOScale(1, scaleDuration);
             yield return new WaitForSeconds(scaleTimeBetweenPieces);
+            
         }
+        CoinsAnimationManager.Instance.StartAnimations();
+
     }
 
 
