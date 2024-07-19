@@ -1,5 +1,6 @@
 using DG.Tweening;
 using Ebac.Core.Singleton;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,6 +35,8 @@ public class CoinsAnimationManager : Singleton<CoinsAnimationManager>
 
         yield return null;
 
+        SortCoinsByDistance();
+
         for (int i = 0; i < coins.Count; i++)
         {
             coins[i].transform.DOScale(Vector3.one, scaleDuration);
@@ -54,8 +57,13 @@ public class CoinsAnimationManager : Singleton<CoinsAnimationManager>
         }
     }
 
-    private void Start()
+    public void ClearCoinsCollection()
     {
+        coins.Clear();
+    }
 
+    private void SortCoinsByDistance()
+    {
+        coins = coins.OrderBy( x => Vector3.Distance(this.transform.position, x.transform.position) ).ToList();
     }
 }
