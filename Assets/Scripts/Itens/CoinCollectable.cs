@@ -34,5 +34,9 @@ public class CoinCollectable : ItemCollectableBase
         }
     }
 
+    private void Start()
+    {
+        CoinsAnimationManager.Instance.RegisterCoin(this);
+    }
 
 }
