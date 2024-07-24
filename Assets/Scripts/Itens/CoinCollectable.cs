@@ -17,7 +17,7 @@ public class CoinCollectable : ItemCollectableBase
         //base.OnCollect();
         GetComponent<Collider>().enabled = false;
         collect = true;
-        //PlayerController.Instance.Bounce();
+        PlayerController.Instance.Bounce();
     }
 
 
