@@ -41,7 +41,8 @@ public class PlayerController : Singleton<PlayerController>
     public float EndValueImpactCollision = 1f;
     public float Duration = .3f;
     private float _baseSpeedAnniation = 7f;
-    
+    [SerializeField]
+    private BounceHelper bounceHelper;
     
     
     #region Unity
@@ -107,6 +108,14 @@ public class PlayerController : Singleton<PlayerController>
 
 
     #region Scene Logic
+
+    public void Bounce()
+    {
+        if (bounceHelper != null)
+        {
+            bounceHelper.Bounce();
+        }
+    }
 
     private void ImpactMove(Transform transform)
     {

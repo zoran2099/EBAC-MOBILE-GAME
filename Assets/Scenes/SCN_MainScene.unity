@@ -2690,6 +2690,7 @@ MonoBehaviour:
   animatorManager: {fileID: 6344229249059251139}
   EndValueImpactCollision: 1
   Duration: 0.3
+  bounceHelper: {fileID: 5177299304680305178}
 --- !u!1 &3869071894848039150
 GameObject:
   m_ObjectHideFlags: 0
@@ -3232,6 +3233,7 @@ GameObject:
   - component: {fileID: 1995296285527626818}
   - component: {fileID: 1731781055356949633}
   - component: {fileID: 3724701044415683711}
+  - component: {fileID: 5177299304680305178}
   - component: {fileID: 3385981838680964314}
   - component: {fileID: 3977636560748128783}
   m_Layer: 0
@@ -3241,6 +3243,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5177299304680305178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5177299304680305177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0551b7573da93b40bcdb6f0f7aec0db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scalaDuration: 0.05
+  scalaBounce: 1.2
+  ease: 27
 --- !u!137 &5192518235128977620
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
