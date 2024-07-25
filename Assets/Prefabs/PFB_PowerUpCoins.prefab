@@ -130,9 +130,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagPlayer: Player
-  timeDestroy: 7.1
+  timeDestroy: 3.1
   graphicItem: {fileID: 2554182439192562631}
-  effectDuration: 5
+  effectDuration: 0.52
   sizeAmount: 10
 --- !u!65 &589090827954414827
 BoxCollider:

@@ -117,6 +117,22 @@ public class PlayerController : Singleton<PlayerController>
         }
     }
 
+    public void ScaleUp()
+    {
+        if (bounceHelper != null)
+        {
+            bounceHelper.ScaleUP(); 
+        }
+    }
+    
+    public void ScaleDown()
+    {
+        if (bounceHelper != null)
+        {
+            bounceHelper.ScaleDown(); 
+        }
+    }
+
     private void ImpactMove(Transform transform)
     {
         transform.DOMoveZ(EndValueImpactCollision, Duration).SetRelative();
