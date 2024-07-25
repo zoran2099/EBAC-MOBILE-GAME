@@ -13,7 +13,15 @@ public class BounceHelper : MonoBehaviour
     public float scalaBounce = 1.2f;
     public Ease ease = Ease.OutBack;
     private bool _normalScale;
+    [SerializeField]
+    private float waitSpawnScale = 1f;
+    [SerializeField]
+    private float spawnScaleDuration = 1f;
 
+    private void Start()
+    {
+        SpawnScale();
+    }
 
     // Update is called once per frame
     void Update()
@@ -50,5 +58,25 @@ public class BounceHelper : MonoBehaviour
         _normalScale = true;
         transform.DOScale(1f, scalaDuration).SetEase(ease);
 
+    }
+
+
+
+
+    IEnumerator ScalePiecesByTime()
+    {
+        _normalScale = true;
+        transform.localScale = Vector3.zero;
+
+        yield return null;
+
+        transform.DOScale(Vector3.one, spawnScaleDuration);
+        yield return new WaitForSeconds(waitSpawnScale);
+    }
+
+    public void SpawnScale()
+    {
+        StartCoroutine(ScalePiecesByTime());
+        
     }
 }

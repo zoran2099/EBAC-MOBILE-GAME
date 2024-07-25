@@ -50,7 +50,7 @@ public class PlayerController : Singleton<PlayerController>
     private void Start()
     {
         ResetGame();
-
+        //SpawnScale();
 
     }
 
@@ -132,6 +132,16 @@ public class PlayerController : Singleton<PlayerController>
             bounceHelper.ScaleDown(); 
         }
     }
+
+    public void SpawnScale()
+    {
+        if (bounceHelper != null)
+        {
+            bounceHelper.SpawnScale(); 
+        }
+    }
+
+    
 
     private void ImpactMove(Transform transform)
     {
