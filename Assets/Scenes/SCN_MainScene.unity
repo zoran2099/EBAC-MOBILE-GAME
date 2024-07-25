@@ -366,6 +366,7 @@ MonoBehaviour:
   - {fileID: 2392149086378672658, guid: efcbea353120ebb4ea5bc40b0029ffc7, type: 3}
   levelPieceBaseSetup:
   - {fileID: 11400000, guid: 1ec3c6b050df0834595e7f16b438c032, type: 2}
+  - {fileID: 11400000, guid: e0fd72be379a79848b1e4c3432cd04a6, type: 2}
   _indexLevel: 1
   scaleDuration: 0.5
   scaleTimeBetweenPieces: 0.1
@@ -3258,6 +3259,8 @@ MonoBehaviour:
   scalaDuration: 0.05
   scalaBounce: 1.2
   ease: 27
+  waitSpawnScale: 1
+  spawnScaleDuration: 1
 --- !u!137 &5192518235128977620
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
