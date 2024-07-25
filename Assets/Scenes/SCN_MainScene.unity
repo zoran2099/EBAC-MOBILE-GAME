@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.07006837, g: 0.37353566, b: 0.8637701, a: 1}
+  m_IndirectSpecularColor: {r: 0.5043949, g: 0.65283334, b: 0.8940435, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -365,9 +365,12 @@ MonoBehaviour:
   - {fileID: 2392149086378672658, guid: 444cae00f814cae44b7fc9f4125fb191, type: 3}
   - {fileID: 2392149086378672658, guid: efcbea353120ebb4ea5bc40b0029ffc7, type: 3}
   levelPieceBaseSetup:
-  - {fileID: 11400000, guid: 8356cfff26a765c419717c2903644dd6, type: 2}
-  - {fileID: 11400000, guid: 3d1f160c8ba7e3144b0c2c8d2fd884d3, type: 2}
+  - {fileID: 11400000, guid: 1ec3c6b050df0834595e7f16b438c032, type: 2}
+  - {fileID: 11400000, guid: e0fd72be379a79848b1e4c3432cd04a6, type: 2}
   _indexLevel: 1
+  scaleDuration: 0.5
+  scaleTimeBetweenPieces: 0.1
+  ease: 30
 --- !u!4 &264604576
 Transform:
   m_ObjectHideFlags: 0
@@ -1670,6 +1673,8 @@ MonoBehaviour:
     gameObject: {fileID: 3563603812620955102, guid: 79bb9fab543670648b56b2f2041627d0, type: 3}
   - artType: 2
     gameObject: {fileID: 3215034532081790301, guid: e89e23d76d49cd54c8ffa60bb6133388, type: 3}
+  - artType: 3
+    gameObject: {fileID: 5428113417290123269, guid: 4302ba9637bc97f4aaa1793e56513a8d, type: 3}
 --- !u!4 &1881635528
 Transform:
   m_ObjectHideFlags: 0
@@ -1765,6 +1770,54 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbff7b683aed5f748b115f463f4f36aa, type: 3}
+--- !u!1 &2146747887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2146747889}
+  - component: {fileID: 2146747888}
+  m_Layer: 0
+  m_Name: CoinsAnimation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2146747888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146747887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d9a794a5dc64454eb6f8748ab3bbecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleDuration: 0.1
+  scaleTimeBetweenPieces: 0.1
+  ease: 30
+  coins: []
+--- !u!4 &2146747889
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146747887}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14.173342, y: 7.769122, z: 11.95051}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &30947536604301446
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2638,6 +2691,7 @@ MonoBehaviour:
   animatorManager: {fileID: 6344229249059251139}
   EndValueImpactCollision: 1
   Duration: 0.3
+  bounceHelper: {fileID: 5177299304680305178}
 --- !u!1 &3869071894848039150
 GameObject:
   m_ObjectHideFlags: 0
@@ -3180,6 +3234,7 @@ GameObject:
   - component: {fileID: 1995296285527626818}
   - component: {fileID: 1731781055356949633}
   - component: {fileID: 3724701044415683711}
+  - component: {fileID: 5177299304680305178}
   - component: {fileID: 3385981838680964314}
   - component: {fileID: 3977636560748128783}
   m_Layer: 0
@@ -3189,6 +3244,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5177299304680305178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5177299304680305177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0551b7573da93b40bcdb6f0f7aec0db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scalaDuration: 0.05
+  scalaBounce: 1.2
+  ease: 27
+  waitSpawnScale: 1
+  spawnScaleDuration: 1
 --- !u!137 &5192518235128977620
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -4527,3 +4599,4 @@ SceneRoots:
   - {fileID: 264604576}
   - {fileID: 1881635528}
   - {fileID: 1750944122}
+  - {fileID: 2146747889}
