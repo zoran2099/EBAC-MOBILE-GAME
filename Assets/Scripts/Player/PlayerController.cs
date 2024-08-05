@@ -44,7 +44,8 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField]
     private BounceHelper bounceHelper;
     
-    
+    private bool onFloor = false;
+
     #region Unity
 
     private void Start()
@@ -72,11 +73,17 @@ public class PlayerController : Singleton<PlayerController>
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!_isInvencible && collision.transform.CompareTag(enemyTag)) {
-            ImpactMove(collision.transform); 
-            EndGame(); 
+        if (!_isInvencible && collision.transform.CompareTag(enemyTag))
+        {
+            ImpactMove(collision.transform);
+            EndGame();
         }
         
+        if (collision.transform.CompareTag(trackTag))
+        {
+            onFloor = true;
+            Debug.Log("On the floor");
+        }
         /*if (collision.transform.CompareTag(deathZoneTag)) {
             EndGame(); 
         }*/
@@ -91,18 +98,32 @@ public class PlayerController : Singleton<PlayerController>
         if (other.transform.CompareTag(deathZoneTag)){
             EndGame(); 
         }
+
     }
 
     private void OnCollisionExit(Collision collision)
     {
         if (collision.transform.CompareTag(trackTag))
         {
-            Rigidbody rb = GetComponent<Rigidbody>();
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
-            //rb.useGravity = true;
-            Debug.Log("Vai cair");
-            
+            StartCoroutine(IsBackOnTheFloor());
+            if (!onFloor)
+            {
+                Rigidbody rb = GetComponent<Rigidbody>();
+                rb.constraints = RigidbodyConstraints.FreezeRotation;
+                //rb.useGravity = true;
+                Debug.Log("Vai cair");
+                //EndGame();
+            }
+            onFloor = false;
+            Debug.Log("Off the floor");
+
+
         }
+    }
+
+    IEnumerator IsBackOnTheFloor()
+    {
+        yield return new WaitForSeconds(1);
     }
     #endregion
 
