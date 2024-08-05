@@ -11,6 +11,7 @@ public class CoinCollectable : ItemCollectableBase
     public bool collect = false;
     public float lerp = 5f;
     public float minDistance = 1f;
+    public ParticleSystem ParticleSystem;
 
     protected override void OnCollect()
     {
@@ -18,12 +19,21 @@ public class CoinCollectable : ItemCollectableBase
         GetComponent<Collider>().enabled = false;
         collect = true;
         PlayerController.Instance.Bounce();
+
+        if (ParticleSystem != null) ParticleSystem.Play();
+
     }
 
 
 
     private void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            OnCollect();
+        }
+
         if (collect)
         {
             transform.position = Vector3.Lerp(transform.position, PlayerController.Instance.transform.position, lerp * Time.deltaTime);
@@ -37,6 +47,11 @@ public class CoinCollectable : ItemCollectableBase
     private void Start()
     {
         CoinsAnimationManager.Instance.RegisterCoin(this);
+
+        if (ParticleSystem != null)
+        {
+            //ParticleSystem.transform.SetParent(null);
+        }
     }
 
 }

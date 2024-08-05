@@ -365,8 +365,7 @@ MonoBehaviour:
   - {fileID: 2392149086378672658, guid: 444cae00f814cae44b7fc9f4125fb191, type: 3}
   - {fileID: 2392149086378672658, guid: efcbea353120ebb4ea5bc40b0029ffc7, type: 3}
   levelPieceBaseSetup:
-  - {fileID: 11400000, guid: 1ec3c6b050df0834595e7f16b438c032, type: 2}
-  - {fileID: 11400000, guid: e0fd72be379a79848b1e4c3432cd04a6, type: 2}
+  - {fileID: 11400000, guid: df47af9de9caec041a1671dd6c46620d, type: 2}
   _indexLevel: 1
   scaleDuration: 0.5
   scaleTimeBetweenPieces: 0.1
@@ -1511,7 +1510,7 @@ Transform:
   m_GameObject: {fileID: 1247188630}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.82, z: -2.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
