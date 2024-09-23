@@ -183,7 +183,7 @@ public class PlayerController : Singleton<PlayerController>
     private void EndGame()
     {
         _isLive = false;
-        PlayDeathAnimation();
+        PlayIdleAnimation();
 
         Invoke(nameof(ResetGame), TimeToLoadScene);
         Invoke(nameof(LoadScene), TimeToLoadScene);
