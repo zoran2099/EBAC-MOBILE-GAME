@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagPlayer: CoinCollector
-  timeDestroy: 5
+  timeDestroy: 1
   graphicItem: {fileID: 9216811498959027962}
   collect: 0
   lerp: 5
