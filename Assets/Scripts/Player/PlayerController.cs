@@ -46,6 +46,10 @@ public class PlayerController : Singleton<PlayerController>
     
     private bool onFloor = false;
 
+    [Header("VFX")]
+    public ParticleSystem vfxDeath;
+
+
     #region Unity
 
     private void Start()
@@ -96,7 +100,7 @@ public class PlayerController : Singleton<PlayerController>
         }
 
         if (other.transform.CompareTag(deathZoneTag)){
-            EndGame(); 
+            Kill(); 
         }
 
     }
@@ -190,6 +194,17 @@ public class PlayerController : Singleton<PlayerController>
 
 
     }
+
+    private void Kill()
+    {
+        _isLive = false;
+        PlayDeathAnimation();
+
+        Invoke(nameof(ResetGame), TimeToLoadScene);
+        Invoke(nameof(LoadScene), TimeToLoadScene);
+
+
+    }
    
 
 
@@ -269,6 +284,7 @@ public class PlayerController : Singleton<PlayerController>
     private void PlayDeathAnimation()
     {
         animatorManager.PlayAnimation(AnimatorManager.AnimationType.DEAD);
+        if(vfxDeath != null) vfxDeath.Play();
     }
     #endregion
 }
