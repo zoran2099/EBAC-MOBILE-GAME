@@ -49,6 +49,8 @@ public class PlayerController : Singleton<PlayerController>
     [Header("VFX")]
     public ParticleSystem vfxDeath;
 
+    [Header("Limits")]
+    public Vector2 limitMovimentPlayer = new Vector2(-6, 6);
 
     #region Unity
 
@@ -70,9 +72,31 @@ public class PlayerController : Singleton<PlayerController>
         _position.y = transform.position.y;
         _position.z = transform.position.z;
 
+        Debug.Log("X position"+_position.x);
+
+        if (_position.x < limitMovimentPlayer.x)
+        {
+            _position.x = limitMovimentPlayer.x;
+        }
+        else if (_position.x > limitMovimentPlayer.y)
+        {
+            _position.x = limitMovimentPlayer.y;
+        }
+
+
         transform.position = Vector3.Lerp(transform.position, _position, lerpSpeed * Time.deltaTime);
 
         transform.Translate(transform.forward * _currentSpeed * Time.deltaTime);
+
+
+        if (!onFloor)
+        {
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            //rb.useGravity = true;
+            Debug.Log("Vai cair");
+            //EndGame();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -110,14 +134,7 @@ public class PlayerController : Singleton<PlayerController>
         if (collision.transform.CompareTag(trackTag))
         {
             StartCoroutine(IsBackOnTheFloor());
-            if (!onFloor)
-            {
-                Rigidbody rb = GetComponent<Rigidbody>();
-                rb.constraints = RigidbodyConstraints.FreezeRotation;
-                //rb.useGravity = true;
-                Debug.Log("Vai cair");
-                //EndGame();
-            }
+            
             onFloor = false;
             Debug.Log("Off the floor");
 

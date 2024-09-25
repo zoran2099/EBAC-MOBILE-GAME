@@ -2746,7 +2746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d311da1ee48ae408fda131fb66a778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lerpSpeed: 1
+  lerpSpeed: 10
   target: {fileID: 5311167087202802410}
   speed: 10
   _startPosition: {x: 0, y: -0.3, z: 0}
@@ -2762,6 +2762,7 @@ MonoBehaviour:
   Duration: 0.3
   bounceHelper: {fileID: 5177299304680305178}
   vfxDeath: {fileID: 9144825819644011636}
+  limitMovimentPlayer: {x: -6, y: 6}
 --- !u!1 &3869071894848039150
 GameObject:
   m_ObjectHideFlags: 0
