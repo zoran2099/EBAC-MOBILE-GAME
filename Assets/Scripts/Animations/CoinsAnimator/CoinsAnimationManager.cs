@@ -31,6 +31,7 @@ public class CoinsAnimationManager : Singleton<CoinsAnimationManager>
         foreach (var coin in coins)
         {
             coin.transform.localScale = Vector3.zero;
+            
         }
 
         yield return null;
@@ -40,6 +41,8 @@ public class CoinsAnimationManager : Singleton<CoinsAnimationManager>
         for (int i = 0; i < coins.Count; i++)
         {
             coins[i].transform.DOScale(Vector3.one, scaleDuration);
+            var particle =  coins[i].GetComponent<ParticleSystem>();
+            if (particle != null) { particle.transform.localScale = Vector3.one; }
             yield return new WaitForSeconds(scaleTimeBetweenPieces);
         }
     }

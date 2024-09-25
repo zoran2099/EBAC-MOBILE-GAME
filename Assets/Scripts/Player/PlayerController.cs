@@ -44,7 +44,14 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField]
     private BounceHelper bounceHelper;
     
-    
+    private bool onFloor = false;
+
+    [Header("VFX")]
+    public ParticleSystem vfxDeath;
+
+    [Header("Limits")]
+    public Vector2 limitMovimentPlayer = new Vector2(-6, 6);
+
     #region Unity
 
     private void Start()
@@ -65,18 +72,46 @@ public class PlayerController : Singleton<PlayerController>
         _position.y = transform.position.y;
         _position.z = transform.position.z;
 
+        Debug.Log("X position"+_position.x);
+
+        if (_position.x < limitMovimentPlayer.x)
+        {
+            _position.x = limitMovimentPlayer.x;
+        }
+        else if (_position.x > limitMovimentPlayer.y)
+        {
+            _position.x = limitMovimentPlayer.y;
+        }
+
+
         transform.position = Vector3.Lerp(transform.position, _position, lerpSpeed * Time.deltaTime);
 
         transform.Translate(transform.forward * _currentSpeed * Time.deltaTime);
+
+
+        if (!onFloor)
+        {
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            //rb.useGravity = true;
+            Debug.Log("Vai cair");
+            //EndGame();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!_isInvencible && collision.transform.CompareTag(enemyTag)) {
-            ImpactMove(collision.transform); 
-            EndGame(); 
+        if (!_isInvencible && collision.transform.CompareTag(enemyTag))
+        {
+            ImpactMove(collision.transform);
+            EndGame();
         }
         
+        if (collision.transform.CompareTag(trackTag))
+        {
+            onFloor = true;
+            Debug.Log("On the floor");
+        }
         /*if (collision.transform.CompareTag(deathZoneTag)) {
             EndGame(); 
         }*/
@@ -89,20 +124,27 @@ public class PlayerController : Singleton<PlayerController>
         }
 
         if (other.transform.CompareTag(deathZoneTag)){
-            EndGame(); 
+            Kill(); 
         }
+
     }
 
     private void OnCollisionExit(Collision collision)
     {
         if (collision.transform.CompareTag(trackTag))
         {
-            Rigidbody rb = GetComponent<Rigidbody>();
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
-            //rb.useGravity = true;
-            Debug.Log("Vai cair");
+            StartCoroutine(IsBackOnTheFloor());
             
+            onFloor = false;
+            Debug.Log("Off the floor");
+
+
         }
+    }
+
+    IEnumerator IsBackOnTheFloor()
+    {
+        yield return new WaitForSeconds(1);
     }
     #endregion
 
@@ -160,6 +202,17 @@ public class PlayerController : Singleton<PlayerController>
     }
 
     private void EndGame()
+    {
+        _isLive = false;
+        PlayIdleAnimation();
+
+        Invoke(nameof(ResetGame), TimeToLoadScene);
+        Invoke(nameof(LoadScene), TimeToLoadScene);
+
+
+    }
+
+    private void Kill()
     {
         _isLive = false;
         PlayDeathAnimation();
@@ -248,6 +301,7 @@ public class PlayerController : Singleton<PlayerController>
     private void PlayDeathAnimation()
     {
         animatorManager.PlayAnimation(AnimatorManager.AnimationType.DEAD);
+        if(vfxDeath != null) vfxDeath.Play();
     }
     #endregion
 }

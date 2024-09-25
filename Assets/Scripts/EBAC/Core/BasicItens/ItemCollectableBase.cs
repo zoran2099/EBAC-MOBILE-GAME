@@ -37,8 +37,11 @@ public class ItemCollectableBase : MonoBehaviour
 
     protected virtual void OnCollect()
     {
-        gameObject.SetActive(false);
-        
+        //gameObject.SetActive(false);
+        //gameObject.GetComponent<MeshRenderer>().enabled = false;
+
+        graphicItem.SetActive(false);
+
         Destroy(gameObject, timeDestroy);
     }
     
